@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+	* {
+		border: 1px solid black;
+	}
+	#main {
+		width: 1000px;
+		margin: auto;
+	}
+	.pointer {
+		cursor: pointer;
+	}
+	#section_title {
+		position: relative;
+		height: 100px;
+	}
+	#section_selection {
+		position: relative;
+		height: 70px;
+		background-color: blue;
+	}
+	#selection_area {
+		height: 100%;
+		padding: .5%;
+	}
+	#selection_area a {
+		width: 20%;
+		height: 50%;
+		display: block;
+		border: 1px solid white;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		line-height: 1.5;
+		float: left;
+	}
+	#selection_area a:hover {
+		background-color: green;	
+	}
+	#section_search {
+		position:relative;
+		height: 40px;
+	}
+	#search_area {
+		height: 100%;
+		padding: .3%; 
+	}
+	#search_area > * {
+		float: left;
+		height: 100%;
+		margin-left: .7%;
+	}
+	#search_area a {
+		display: block;
+		width: 15%;
+	}
+	#search_area a:hover {
+		opacity: .5;
+	}
+	#search_area #search_tool {
+		width: 66%;
+	}
+	#search_area #search_tool > *{
+		float: left;
+		height: 100%;
+	}
+</style>
+<body>
+	<div id="main">
+		<div id="section_title">
+			<a href="/tetris/tetris.html" id="title_image"><img src="img/temp.png" height=100%; alt="tile picture"></img></a>
+		</div>
+		<div id="section_selection">
+			<div id="selection_area">
+			</div>
+		</div>
+		<div id="section_search">
+			<div id="search_area">
+				<div id="search_tool">
+					<select style="width: 30%;background-color: white;" id="search_category_list">
+					</select>
+					<input type="search" style="width: 60%;"></input>
+					<button style="width: 10%;">search</button>
+				</div>
+				<a href="index.html" id="cart">
+					<img src="img/temp.png" width=100% height=100% alt="cart"></img>
+				</a>
+				<a href="index.html" id="favorites">
+					<img src="img/temp.png" width=100% height=100% alt="favorites"></img>
+				</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		var selection_list = {
+			"text1" : "link.html",
+			"text2" : "link.html",
+			"text3" : "link.html",
+			"text4" : "link.html",
+			"text5" : "link.html",
+			"text6" : "link.html",
+			"text7" : "link.html",
+			"text8" : "link.html",
+			"text9" : "link.html",
+			"text10" : "link.html",
+		}
+		Object.keys(selection_list).forEach(function(key) {
+			var el = document.createElement("a");
+			el.href = selection_list[key];
+			el.innerHTML = key;
+			$("#selection_area").append(el);
+			el = document.createElement("option");
+			el.value = el.innerHTML = key;
+			$("#search_category_list").append(el);
+		});
+	</script>
+</body>
+</html>
