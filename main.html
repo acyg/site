@@ -8,9 +8,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <style>
-	* {
+	/* {
 		border: 1px solid black;
-	}
+	}*/
+	@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 	#main {
 		width: 1000px;
 		margin: auto;
@@ -25,7 +26,7 @@
 	#section_selection {
 		position: relative;
 		height: 70px;
-		background-color: blue;
+		background-color: #66ccff;
 	}
 	#selection_area {
 		height: 100%;
@@ -41,9 +42,10 @@
 		text-decoration: none;
 		line-height: 1.5;
 		float: left;
+		text-shadow: 1px 1px grey;
 	}
 	#selection_area a:hover {
-		background-color: green;	
+		background-color: #ff5733;	
 	}
 	#section_search {
 		position:relative;
@@ -52,25 +54,55 @@
 	#search_area {
 		height: 100%;
 		padding: .3%; 
+		background-color: lightgrey;
 	}
 	#search_area > * {
 		float: left;
 		height: 100%;
 		margin-left: .7%;
 	}
-	#search_area a {
+	#search_area > a {
 		display: block;
 		width: 15%;
 	}
-	#search_area a:hover {
+	#search_area > a:hover {
 		opacity: .5;
 	}
-	#search_area #search_tool {
+	#search_tool {
 		width: 66%;
 	}
-	#search_area #search_tool > *{
+	#search_tool > *{
 		float: left;
 		height: 100%;
+	}
+	#search_category {
+		width: 30%;
+		background-color: white;
+	}
+	#search_tool #search_box {
+		position: relative;
+		width: 60%;
+	}
+	#search_tool #search_box > input {
+		width: 100%;
+		height: 100%;
+		text-indent: 6%;
+	}
+	#search_tool #search_box > span {
+		left: 2%;
+		top: 25%;
+		position: absolute;
+		width: 6%;
+		color: #aaa;
+	}
+	#search_tool > button {
+		width: 10%;
+		background: linear-gradient(0deg, orange, yellow);
+		border-radius: 8px;
+		cursor: pointer;
+	}
+	#search_tool > button:hover {
+		opacity: .5;
 	}
 </style>
 <body>
@@ -85,10 +117,14 @@
 		<div id="section_search">
 			<div id="search_area">
 				<div id="search_tool">
-					<select style="width: 30%;background-color: white;" id="search_category_list">
+					<select id="search_category">
 					</select>
-					<input type="search" style="width: 60%;"></input>
-					<button style="width: 10%;">search</button>
+					<div id="search_box">
+						<span class="fa fa-search"></span>
+						<input placeholder="Search Term"></input>
+					</div>
+					<button onclick="search($('#section_search #search_category').val(), 
+						$('#section_search #search_box > input').val())">Search</button>
 				</div>
 				<a href="index.html" id="cart">
 					<img src="img/temp.png" width=100% height=100% alt="cart"></img>
@@ -101,7 +137,7 @@
 	</div>
 	<script>
 		var selection_list = {
-			"text1" : "link.html",
+			"Tetris" : "/tetris/tetris.html",
 			"text2" : "link.html",
 			"text3" : "link.html",
 			"text4" : "link.html",
@@ -119,8 +155,12 @@
 			$("#selection_area").append(el);
 			el = document.createElement("option");
 			el.value = el.innerHTML = key;
-			$("#search_category_list").append(el);
+			$("#search_category").append(el);
 		});
+		
+		function search(category, term){
+			alert(category+" "+term);
+		}
 	</script>
 </body>
 </html>
