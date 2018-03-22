@@ -8,10 +8,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <style>
-	/* {
-		border: 1px solid black;
-	}*/
 	@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+	* {
+		border: 1px solid red;
+	}	
 	#main {
 		width: 1000px;
 		margin: auto;
@@ -19,13 +19,17 @@
 	.pointer {
 		cursor: pointer;
 	}
+
+
 	#section_title {
 		position: relative;
-		height: 100px;
+		height: 150px;
 	}
+
+
 	#section_selection {
 		position: relative;
-		height: 70px;
+		height: 50px;
 		background-color: #66ccff;
 	}
 	#selection_area {
@@ -34,11 +38,13 @@
 	}
 	#selection_area a {
 		width: 20%;
-		height: 50%;
+		height: 100%;
 		display: block;
 		border: 1px solid white;
 		color: white;
 		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
 		text-decoration: none;
 		line-height: 1.5;
 		float: left;
@@ -47,120 +53,274 @@
 	#selection_area a:hover {
 		background-color: #ff5733;	
 	}
+
+
 	#section_search {
 		position:relative;
-		height: 40px;
+		height: 45px;
 	}
 	#search_area {
 		height: 100%;
-		padding: .3%; 
+		padding: .2%; 
 		background-color: lightgrey;
 	}
 	#search_area > * {
 		float: left;
 		height: 100%;
-		margin-left: .7%;
 	}
-	#search_area > a {
+	#search_area #side_buttons {
+		float: right;
+		width: 20%;	
+	}
+	#search_area #side_buttons a {
+		float: left;
 		display: block;
-		width: 15%;
+		width: 48%;
+		margin-left: 2%;
+		height: 100%;
 	}
-	#search_area > a:hover {
+	#search_area #side_buttons a:hover {
 		opacity: .5;
 	}
 	#search_tool {
-		width: 66%;
+		width: 60%;
+		margin-left: 10%;
 	}
 	#search_tool > *{
 		float: left;
 		height: 100%;
 	}
 	#search_category {
-		width: 30%;
+		width: 20%;
 		background-color: white;
 	}
 	#search_tool #search_box {
 		position: relative;
-		width: 60%;
+		width: 70%;
 	}
-	#search_tool #search_box > input {
+	#search_tool #search_box #search_input {
 		width: 100%;
 		height: 100%;
-		text-indent: 6%;
+		text-indent: 8%;
 	}
-	#search_tool #search_box > span {
-		left: 2%;
-		top: 25%;
+	#search_tool #search_box #search_icon {
 		position: absolute;
-		width: 6%;
+		top: 14%;
+		left: 1.5%;
+		font-size: 20px;	
 		color: #aaa;
 	}
-	#search_tool > button {
+	#search_tool #search_button {
 		width: 10%;
 		background: linear-gradient(0deg, orange, yellow);
 		border-radius: 8px;
-		cursor: pointer;
 	}
-	#search_tool > button:hover {
+	#search_tool #search_button:hover {
 		opacity: .5;
+	}
+
+
+	#section_lsm {
+		float: left;
+		width: 25%;
+		background-color: #111;
+		opacity: .8;
+	}
+	#lsm_slider {
+		height: 40px;
+	}
+	#lsm_slider_icon {
+		float: right;
+		padding-right: 5px;
+		font-size: 37px;	
+		color: #aaa;
+	}
+	.lsm_category {
+		font-weight: bold;
+		font-size: 20px;
+		text-align: center;
+		color: #aaa;
+		height: 40px;
+	}
+	.lsm_category:hover {
+		background-color: #333;
+	}
+	.lsm_subcat_dropdown {
+		display: none;
+		background-color: white;
+		overflow: hidden;
+
+	}
+	.lsm_subcat {
+		height: 30px;
+		text-align: center;
+		
+	}
+
+
+	#section_rsm {
+		float:left;
+		width: 20%;
+		height: 400px;
+	}
+	#section_main {
+		position: relative;
+		float: left;
+		width: 80%;
+		height: 1600px;
+	}
+	#section_foot {
+		width: 100%;
+		height: 400px;
+		clear: both;
 	}
 </style>
 <body>
 	<div id="main">
+		
+		<!-- Title Section -->
 		<div id="section_title">
 			<a href="/tetris/tetris.html" id="title_image"><img src="img/temp.png" height=100%; alt="tile picture"></img></a>
 		</div>
+
+		<!-- Selection Section -->
 		<div id="section_selection">
 			<div id="selection_area">
 			</div>
 		</div>
+
+		<!-- Search Section -->
 		<div id="section_search">
 			<div id="search_area">
 				<div id="search_tool">
 					<select id="search_category">
+						<option value="all">all</option>
 					</select>
 					<div id="search_box">
-						<span class="fa fa-search"></span>
-						<input placeholder="Search Term"></input>
+						<i class="fa fa-search" id="search_icon"></i>
+						<input placeholder="Search Term" id="search_input"></input>
 					</div>
-					<button onclick="search($('#section_search #search_category').val(), 
+					<button id="search_button" class="pointer" onclick="search($('#section_search #search_category').val(), 
 						$('#section_search #search_box > input').val())">Search</button>
 				</div>
-				<a href="index.html" id="cart">
-					<img src="img/temp.png" width=100% height=100% alt="cart"></img>
-				</a>
-				<a href="index.html" id="favorites">
-					<img src="img/temp.png" width=100% height=100% alt="favorites"></img>
-				</a>
+				<div id="side_buttons">
+					<a href="login.html" id="cart">
+						<img src="img/temp.png" width=100% height=100% alt="cart"></img>
+					</a>
+					<a href="favorites.html" id="favorites">
+						<img src="img/temp.png" width=100% height=100% alt="favorites"></img>
+					</a>
+				</div>
 			</div>
+		</div>
+
+		<!-- Main Display Section -->
+		<div id="section_main">
+
+			<!-- Left Side Menu Section -->
+			<div id="section_lsm">
+				<div id="lsm_slider">
+					<!--div id="lsm_slider" class="pointer" onclick="toggle_lsm()"-->
+						<i id="lsm_slider_icon" 
+							class="fa fa-angle-double-left pointer" 
+							onclick="toggle_lsm()"></i>		
+					<!--/div-->
+				</div>
+			</div>
+		</div>
+
+		<div id="section_rsm">
+		</div>
+		<div id="section_foot">
 		</div>
 	</div>
 	<script>
-		var selection_list = {
-			"Tetris" : "/tetris/tetris.html",
-			"text2" : "link.html",
-			"text3" : "link.html",
-			"text4" : "link.html",
-			"text5" : "link.html",
-			"text6" : "link.html",
-			"text7" : "link.html",
-			"text8" : "link.html",
-			"text9" : "link.html",
-			"text10" : "link.html",
+		var lsm_open = true;
+
+		function toggle_lsm(){
+			var categories = $(".lsm_category");
+			
+			if(lsm_open){
+				for(var i = 0;i < categories.length;i++){
+					var category = categories[i];
+					category.innerHTML = category.getAttribute("name")[0];
+				}
+				$("#section_lsm").animate({width: "5%"}, function() {
+					$("#lsm_slider_icon").removeClass("fa fa-angle-double-left")
+						.addClass("fa fa-angle-double-right");
+				});
+			} else {
+				$("#section_lsm").animate({width: "25%"}, function() {
+					$("#lsm_slider_icon").removeClass("fa fa-angle-double-right")
+						.addClass("fa fa-angle-double-left");
+					for(var i = 0;i < categories.length;i++){
+						var category = categories[i];
+						category.innerHTML = category.getAttribute("name");
+					}
+				});
+				
+			}
+			lsm_open = !lsm_open;
 		}
-		Object.keys(selection_list).forEach(function(key) {
-			var el = document.createElement("a");
-			el.href = selection_list[key];
-			el.innerHTML = key;
-			$("#selection_area").append(el);
-			el = document.createElement("option");
-			el.value = el.innerHTML = key;
-			$("#search_category").append(el);
-		});
-		
+
 		function search(category, term){
-			alert(category+" "+term);
+			$("#section_main").append(document.createTextNode("you serached for " + term + " in " + category + "."));
 		}
+
+		function toggle_subcat(el){
+			if(!lsm_open) toggle_lsm();
+			var dropdown = $(el).parent().find(".lsm_subcat_dropdown");
+			dropdown.slideToggle("fast");
+			//dropdown.animate({height: "60px"});
+		}
+
+		function setup_categories(data){
+			Object.keys(data).forEach(function(key) {
+				var el = document.createElement("a");
+				el.href = data[key]["link"];
+				el.innerHTML = key;
+				$("#selection_area").append(el);
+
+				el = document.createElement("option");
+				el.value = el.innerHTML = key;
+				$("#search_category").append(el);
+
+				var cat = document.createElement("div");
+				cat.innerHTML = key;
+				cat.setAttribute("name", key);
+				cat.className = "pointer lsm_category";
+				cat.addEventListener("click", function(){
+					toggle_subcat(this);
+				});
+				el = document.createElement("div");
+				el.append(cat);	
+
+
+				if(data[key]["subcat"]){
+					var subcat = data[key]["subcat"];
+					var subcat_dropdown = document.createElement("div")
+					subcat_dropdown.className = "lsm_subcat_dropdown";
+					subcat_dropdown.id = key;
+					Object.keys(subcat).forEach(function(key){
+						var subcat_el = document.createElement("div");
+						subcat_el.innerHTML = key;
+						subcat_el.className = "lsm_subcat pointer";
+						subcat_el.herf = subcat[key]["link"];
+						subcat_dropdown.append(subcat_el);
+					});
+					el.append(subcat_dropdown);
+				}
+				
+				$("#section_lsm").append(el);
+				
+			});
+		}
+
+		$(document).ready(function() {
+			$.get("categories.json", (data) => {
+				setup_categories(data);
+			});
+		});
 	</script>
 </body>
 </html>
