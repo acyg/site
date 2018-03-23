@@ -9,11 +9,8 @@
 </head>
 <style>
 	@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-	* {
-		border: 1px solid red;
-	}	
 	#main {
-		width: 1000px;
+		width: 1080px;
 		margin: auto;
 	}
 	.pointer {
@@ -105,9 +102,9 @@
 	}
 	#search_tool #search_box #search_icon {
 		position: absolute;
-		top: 14%;
+		top: 20%;
 		left: 1.5%;
-		font-size: 20px;	
+		font-size: 22px;	
 		color: #aaa;
 	}
 	#search_tool #search_button {
@@ -121,10 +118,12 @@
 
 
 	#section_lsm {
-		float: left;
+		position: sticky;
+		top: 0;
 		width: 25%;
 		background-color: #111;
 		opacity: .8;
+		float: left;
 	}
 	#lsm_slider {
 		height: 40px;
@@ -149,30 +148,41 @@
 		display: none;
 		background-color: white;
 		overflow: hidden;
-
 	}
 	.lsm_subcat {
+		display: block;
 		height: 30px;
 		text-align: center;
-		
+		text-decoration: none;
+		color: black;
+		border: 1px solid black;
+		border-top: none;
 	}
 
 
-	#section_rsm {
-		float:left;
-		width: 20%;
-		height: 400px;
+
+	#section_body {
+		position: relative;
+		height: 1600px;
 	}
 	#section_main {
-		position: relative;
-		float: left;
-		width: 80%;
-		height: 1600px;
+		position: absolute;
+		width: 75%;
+		left: 5%;
+		height: 100%;
+	}
+	#section_rsm {
+		float: right;
+		width: 20%;
+		height: 400px;
 	}
 	#section_foot {
 		width: 100%;
 		height: 400px;
 		clear: both;
+	}
+	* {
+		border: 1px solid red;
 	}
 </style>
 <body>
@@ -214,8 +224,14 @@
 			</div>
 		</div>
 
-		<!-- Main Display Section -->
-		<div id="section_main">
+		
+
+
+		<!-- Body Section -->
+		<div id="section_body">
+
+			<!-- Main Display Section -->
+			<div id="section_main"></div>
 
 			<!-- Left Side Menu Section -->
 			<div id="section_lsm">
@@ -227,24 +243,31 @@
 					<!--/div-->
 				</div>
 			</div>
+
+			<!-- Right Side Menu Section -->
+			<div id="section_rsm"></div>
+
 		</div>
 
-		<div id="section_rsm">
-		</div>
-		<div id="section_foot">
-		</div>
+
+		<!-- Footer Section -->
+		<footer id="section_foot">
+		</footer>
 	</div>
+
 	<script>
 		var lsm_open = true;
 
 		function toggle_lsm(){
+
 			var categories = $(".lsm_category");
-			
 			if(lsm_open){
 				for(var i = 0;i < categories.length;i++){
 					var category = categories[i];
 					category.innerHTML = category.getAttribute("name")[0];
 				}
+
+				$(".lsm_subcat_dropdown").slideUp("fast");
 				$("#section_lsm").animate({width: "5%"}, function() {
 					$("#lsm_slider_icon").removeClass("fa fa-angle-double-left")
 						.addClass("fa fa-angle-double-right");
@@ -295,17 +318,16 @@
 				el = document.createElement("div");
 				el.append(cat);	
 
-
 				if(data[key]["subcat"]){
 					var subcat = data[key]["subcat"];
 					var subcat_dropdown = document.createElement("div")
 					subcat_dropdown.className = "lsm_subcat_dropdown";
 					subcat_dropdown.id = key;
 					Object.keys(subcat).forEach(function(key){
-						var subcat_el = document.createElement("div");
+						var subcat_el = document.createElement("a");
 						subcat_el.innerHTML = key;
 						subcat_el.className = "lsm_subcat pointer";
-						subcat_el.herf = subcat[key]["link"];
+						subcat_el.href = subcat[key]["link"];
 						subcat_dropdown.append(subcat_el);
 					});
 					el.append(subcat_dropdown);
