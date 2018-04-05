@@ -59,7 +59,7 @@ function setup_categories(data) {
             toggle_subcat(this);
         });
         el = document.createElement("div");
-        el.append(cat);
+        el.appendChild(cat);
 
         if (data[key]["subcat"]) {
             var subcat = data[key]["subcat"];
@@ -71,9 +71,9 @@ function setup_categories(data) {
                 subcat_el.innerHTML = key;
                 subcat_el.className = "lsm_subcat pointer";
                 subcat_el.href = subcat[key]["link"];
-                subcat_dropdown.append(subcat_el);
+                subcat_dropdown.appendChild(subcat_el);
             });
-            el.append(subcat_dropdown);
+            el.appendChild(subcat_dropdown);
         }
 
         $("#section_lsm").append(el);
